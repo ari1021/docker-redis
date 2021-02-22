@@ -1,1 +1,3 @@
 # docker-redis
+DockerでRedisの環境を構築するためのファイル置き場．
+ローカルのRedisの代わりに使うことを想定．
