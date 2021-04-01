@@ -8,11 +8,12 @@ services:
     volumes:
       - ./redis/data:/data
       # ローカルの./redis/dataをコンテナ上の/data(Redisのデータ)にマウントする
-      - ./redis/log/:/var/log/redis
-      # ローカルの./mysql/logをコンテナ上の/var/log/mysql(MySQLのログ)にマウントする
+      - ./redis/log/:/usr/local/var/log
+      # ローカルの./redis/logをコンテナ上の/usr/local/var/log(Redisのログ，redis.confで指定)にマウントする
       - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
       # ローカルの./redis/redis.cnf(Redisの設定ファイル)をコンテナ上の/usr/local/etc/redis/redis.confにマウントする
     ports:
       - "127.0.0.1:63790:6379"
       # ローカルの63790ポートとコンテナの6379ポートをマッピングする
       # ただし，ローカルの63790ポートには127.0.0.1からしかアクセスできない
+    entrypoint: redis-server /usr/local/etc/redis/redis.conf
